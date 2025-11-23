@@ -1,34 +1,278 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dein Name</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicolas Seng</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #333;
+            background: #fafafa;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px 60px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        header {
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        nav {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 0.95em;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 1.6em;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            margin-top: 40px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-top: 25px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #444;
+            font-size: 1em;
+        }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-preview {
+            background: #f9f9f9;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 3px solid #0066cc;
+        }
+
+        .blog-preview h3 {
+            margin-top: 0;
+        }
+
+        .blog-date {
+            color: #888;
+            font-size: 0.9em;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .blog-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .blog-list li {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .blog-list li:last-child {
+            border-bottom: none;
+        }
+
+        .cv-entry {
+            margin-bottom: 30px;
+        }
+
+        .cv-entry h3 {
+            margin-bottom: 5px;
+        }
+
+        .cv-period {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 8px;
+        }
+
+        .cv-description {
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 25px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            nav a {
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <main>
-    <h1>Nicolas Seng</h1>
-    <p class="subtitle">Machine Learning • Deep Learning</p>
+    <div class="container">
+        <header>
+            <h1>Nicolas Seng</h1>
+            <p class="tagline">Computer Vision Intern @ BMW · Universität Tübingen</p>
+            <nav>
+                <a onclick="showPage('home')">Home</a>
+                <a onclick="showPage('blog')">Blog</a>
+                <a onclick="showPage('cv')">Lebenslauf</a>
+                <a href="nicolas.seng@icloud.com">Kontakt</a>
+                <a href="https://github.com/nicolasseng" target="_blank">GitHub</a>
+            </nav>
+        </header>
 
-    <section>
-      <h2>Über mich</h2>
-      <p></p>
-    </section>
+        <div id="home" class="page active">
+            <section>
+                <h2>Über mich</h2>
+                <p>
+                    Placeholder
+                </p>
+            </section>
 
-    <section>
-      <h2>Projekte</h2>
-      <ul>
-      </ul>
-    </section>
+            <section>
+                <h2>Neuester Blog-Beitrag</h2>
+                <div class="blog-preview">
+                    <h3><a onclick="showPage('blog')">Coming soon</a></h3>
+                    <a onclick="showPage('blog')">Weiterlesen →</a>
+                </div>
+            </section>
+        </div>
 
-    <section>
-      <h2>Kontakt</h2>
-      <p>
-        <a href="https://github.com/nicolasseng">GitHub</a> •
-        <a href="https://www.linkedin.com/in/nicolasseng">LinkedIn</a>
-      </p>
-    </section>
-  </main>
+        <div id="blog" class="page">
+            <section>
+                <h2>Blog</h2>
+                <p>Hier schreibe ich über Machine Learning, Forschung und gelegentlich auch über andere Themen, die mich beschäftigen.</p>
+                
+                <ul class="blog-list">
+                    
+                </ul>
+            </section>
+        </div>
+
+        <div id="cv" class="page">
+            <section>
+                <h2>Lebenslauf</h2>
+                
+                <div class="cv-entry">
+                    <h3>Computer Vision Praktikant</h3>
+                    <p class="cv-period">08/2025 – heute</p>
+                    <p class="cv-description">
+                        BMW AG, München<br>
+                        Erkennung von Anomalien in der Produktion von Motoren mit unsupervised deep learning Ansätzen
+                    </p>
+                </div>
+
+                <div class="cv-entry">
+                    <h3>Research Assistant</h3>
+                    <p class="cv-period">04/2024 – 10/2024</p>
+                    <p class="cv-description">
+                        Fraunhofer IPA, Stuttgart<br>
+                        Mitarbeit an Projekten im Bereich Computer Vision
+                    </p>
+                </div>
+                <div class="cv-entry">
+                    <h3>Bachelor of Science in Informatik</h3>
+                    <p class="cv-period">2021 – 2025</p>
+                    <p class="cv-description">
+                        Universität Tübingen<br>
+                        Bachelorarbeit: "Evaluating Uncertainty Quantification Techniques in Fourier Neural Operators"
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>© 2025 Nicolas Seng · <a href="mailto:max@example.com">max@example.com</a> · <a href="https://github.com/nicolasseng">GitHub</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
