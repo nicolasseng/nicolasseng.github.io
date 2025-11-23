@@ -1,0 +1,46 @@
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: #222;
+    background: #fff;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.2em;
+}
+
+.subtitle {
+    color: #666;
+    margin-top: -10px;
+    margin-bottom: 40px;
+}
+
+h2 {
+    margin-top: 40px;
+    font-size: 1.4rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 6px 0;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+section {
+    margin-bottom: 30px;
+}
