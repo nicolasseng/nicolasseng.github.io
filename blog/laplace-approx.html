@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laplace Approximation for Neural Networks - Nicolas Seng</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: #fbfbfd;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 0 22px;
+        }
+
+        .nav-container {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 48px;
+        }
+
+        .nav-name {
+            font-size: 21px;
+            font-weight: 600;
+            color: #1d1d1f;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .hero {
+            max-width: 730px;
+            margin: 80px auto 40px;
+            padding: 0 22px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            line-height: 1.08;
+            margin-bottom: 16px;
+            color: #1d1d1f;
+        }
+
+        .meta {
+            font-size: 17px;
+            color: #6e6e73;
+            margin-bottom: 40px;
+        }
+
+        .content {
+            max-width: 730px;
+            margin: 0 auto;
+            padding: 0 22px 100px;
+        }
+
+        .content p {
+            font-size: 19px;
+            line-height: 1.58;
+            font-weight: 400;
+            color: #1d1d1f;
+            margin-bottom: 28px;
+        }
+
+        .content h2 {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.125;
+            margin-top: 56px;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+        }
+
+        .content h3 {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.009em;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            color: #1d1d1f;
+        }
+
+        .content ul,
+        .content ol {
+            margin-left: 28px;
+            margin-bottom: 28px;
+        }
+
+        .content li {
+            font-size: 19px;
+            line-height: 1.58;
+            margin-bottom: 12px;
+            color: #1d1d1f;
+        }
+
+        .content code {
+            background: #f5f5f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 17px;
+            color: #1d1d1f;
+        }
+
+        .content pre {
+            background: #f5f5f7;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 28px;
+        }
+
+        .content pre code {
+            background: none;
+            padding: 0;
+            font-size: 15px;
+        }
+
+        .content blockquote {
+            border-left: 4px solid #0066cc;
+            padding-left: 24px;
+            margin: 28px 0;
+            color: #6e6e73;
+            font-style: italic;
+        }
+
+        .content a {
+            color: #0066cc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .content a:hover {
+            color: #0077ed;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 28px 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 40px;
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .back-link:hover {
+            color: #0077ed;
+        }
+
+        footer {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 40px 22px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            color: #6e6e73;
+            text-align: center;
+        }
+
+        footer a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #0077ed;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .content h2 {
+                font-size: 28px;
+            }
+
+            .content h3 {
+                font-size: 21px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-name">Nicolas Seng</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#blog">Blog</a>
+                <a href="index.html#cv">CV</a>
+                <a href="https://github.com/nicolasseng" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Laplace Approximation for Neural Networks</h1>
+        <div class="meta">26. Dezember 2025 · 5 min read</div>
+    </div>
+
+    <div class="content">
+        <a href="index.html#blog" class="back-link">← Zurück zum Blog</a>
+
+        <!-- DEIN CONTENT STARTET HIER -->
+
+        <p>
+            Dies ist der erste Absatz deines Blog-Posts. Hier kannst du eine Einleitung schreiben und erklären,
+            worum es in diesem Post geht.
+        </p>
+
+        <h2>Eine Hauptüberschrift</h2>
+
+        <p>
+            Hier kommt mehr Text. Du kannst mehrere Absätze schreiben und deine Gedanken ausführlich erklären.
+            Der Text wird automatisch schön formatiert im Apple-Stil.
+        </p>
+
+        <h3>Eine Unterüberschrift</h3>
+
+        <p>
+            Noch mehr interessanter Content. Du kannst auch <a href="#">Links einfügen</a> oder
+            <code>Code-Snippets</code> verwenden.
+        </p>
+
+        <ul>
+            <li>Aufzählungspunkt eins</li>
+            <li>Aufzählungspunkt zwei</li>
+            <li>Aufzählungspunkt drei</li>
+        </ul>
+
+        <blockquote>
+            "Ein inspirierendes Zitat oder wichtiger Hinweis kann hier stehen."
+        </blockquote>
+
+        <p>
+            Du kannst auch Code-Blöcke einfügen:
+        </p>
+
+        <pre><code>function example() {
+    console.log("Hello World");
+    return true;
+}</code></pre>
+
+        <h2>Noch eine Hauptüberschrift</h2>
+
+        <p>
+            Und noch mehr Text. Du kannst so viele Abschnitte hinzufügen, wie du möchtest.
+        </p>
+
+        <ol>
+            <li>Nummerierte Liste Punkt eins</li>
+            <li>Nummerierte Liste Punkt zwei</li>
+            <li>Nummerierte Liste Punkt drei</li>
+        </ol>
+
+        <p>
+            Dein Schlussabsatz kommt hier hin. Fasse zusammen oder gib einen Ausblick.
+        </p>
+
+        <!-- DEIN CONTENT ENDET HIER -->
+
+        <a href="index.html#blog" class="back-link">← Zurück zum Blog</a>
+    </div>
+
+    <footer>
+        <p>© 2025 Nicolas Seng · <a href="https://github.com/nicolasseng">GitHub</a></p>
+    </footer>
+</body>
+
+</html>
