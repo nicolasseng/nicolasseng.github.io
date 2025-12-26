@@ -288,9 +288,12 @@
             <section>
                 <h2>Latest from Blog</h2>
                 <div class="card">
-                    <h3>Coming soon</h3>
-                    <p>Stay tuned for insights on computer vision, machine learning, and my journey in tech.</p>
-                    <a class="cta-button" onclick="showPage('blog')">View Blog</a>
+                    <p class="blog-date">26/12/2025</p>
+                    <h3>Laplace Approximation for Neural Networks</h3>
+                    <p>This blog is a step-by-step guide on how to train a neural network and quantify its uncertainty
+                        in JAX!
+                    </p>
+                    <a class="cta-button" href="blog/laplace-approx.html"> View Blog</a>
                 </div>
             </section>
         </div>
@@ -368,6 +371,22 @@
             document.getElementById(pageId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Handle hash navigation on page load
+        window.addEventListener('load', function () {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showPage(hash);
+            }
+        });
+
+        // Handle hash changes
+        window.addEventListener('hashchange', function () {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showPage(hash);
+            }
+        });
     </script>
 </body>
 
