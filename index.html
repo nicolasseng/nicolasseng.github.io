@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -13,244 +13,333 @@
         }
 
         body {
-            font-family: Georgia, 'Times New Roman', serif;
-            line-height: 1.8;
-            color: #333;
-            background: #fafafa;
-            padding: 40px 20px;
-        }
-
-        .container {
-            max-width: 750px;
-            margin: 0 auto;
-            background: white;
-            padding: 50px 60px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        header {
-            margin-bottom: 50px;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            font-weight: 400;
-            color: #1a1a1a;
-            margin-bottom: 10px;
-        }
-
-        .tagline {
-            font-size: 1.1em;
-            color: #666;
-            margin-bottom: 25px;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: #fbfbfd;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         nav {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 0 22px;
         }
 
-        nav a {
-            color: #0066cc;
+        .nav-container {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 48px;
+        }
+
+        .nav-name {
+            font-size: 21px;
+            font-weight: 600;
+            color: #1d1d1f;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: #1d1d1f;
             text-decoration: none;
-            margin-right: 20px;
-            font-size: 0.95em;
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
             cursor: pointer;
         }
 
-        nav a:hover {
-            text-decoration: underline;
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .hero {
+            max-width: 980px;
+            margin: 80px auto 60px;
+            padding: 0 22px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            line-height: 1.07;
+            margin-bottom: 8px;
+            color: #1d1d1f;
+        }
+
+        .hero .subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            color: #6e6e73;
+            line-height: 1.14;
+            letter-spacing: 0.007em;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px 100px;
         }
 
         section {
-            margin-bottom: 50px;
+            margin-bottom: 80px;
         }
 
         h2 {
-            font-size: 1.6em;
-            font-weight: 400;
-            color: #1a1a1a;
-            margin-bottom: 20px;
-            margin-top: 40px;
+            font-size: 40px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: #1d1d1f;
         }
 
         h3 {
-            font-size: 1.2em;
+            font-size: 24px;
             font-weight: 600;
-            color: #1a1a1a;
-            margin-top: 25px;
+            letter-spacing: -0.009em;
             margin-bottom: 8px;
+            color: #1d1d1f;
         }
 
         p {
-            margin-bottom: 15px;
-            color: #444;
-            font-size: 1em;
+            font-size: 17px;
+            line-height: 1.47;
+            font-weight: 400;
+            color: #1d1d1f;
+            margin-bottom: 20px;
         }
 
         a {
             color: #0066cc;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         a:hover {
-            text-decoration: underline;
+            color: #0077ed;
         }
 
-        .blog-preview {
-            background: #f9f9f9;
-            padding: 25px;
-            margin: 20px 0;
-            border-left: 3px solid #0066cc;
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 40px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .blog-preview h3 {
-            margin-top: 0;
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
 
         .blog-date {
-            color: #888;
-            font-size: 0.9em;
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        .blog-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .blog-list li {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .blog-list li:last-child {
-            border-bottom: none;
+            font-size: 14px;
+            color: #6e6e73;
+            margin-bottom: 12px;
+            font-weight: 500;
         }
 
         .cv-entry {
-            margin-bottom: 30px;
-        }
-
-        .cv-entry h3 {
-            margin-bottom: 5px;
+            background: white;
+            border-radius: 18px;
+            padding: 32px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
         }
 
         .cv-period {
-            color: #666;
-            font-size: 0.95em;
-            margin-bottom: 8px;
+            font-size: 15px;
+            color: #6e6e73;
+            margin-bottom: 12px;
+            font-weight: 500;
         }
 
         .cv-description {
-            color: #555;
-            font-size: 0.95em;
+            font-size: 17px;
+            color: #1d1d1f;
+            line-height: 1.47;
         }
 
         footer {
-            margin-top: 60px;
-            padding-top: 25px;
-            border-top: 1px solid #e0e0e0;
-            font-size: 0.9em;
-            color: #888;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 40px 22px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            color: #6e6e73;
+            text-align: center;
         }
 
         .page {
             display: none;
+            animation: fadeIn 0.4s ease;
         }
 
         .page.active {
             display: block;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px 25px;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
             }
 
-            h1 {
-                font-size: 2em;
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 22px;
+            background: #0066cc;
+            color: white;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 400;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .cta-button:hover {
+            background: #0077ed;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero .subtitle {
+                font-size: 21px;
             }
 
             h2 {
-                font-size: 1.4em;
+                font-size: 32px;
             }
 
-            nav a {
-                display: inline-block;
-                margin-bottom: 10px;
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .card,
+            .cv-entry {
+                padding: 24px;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1>Nicolas Seng</h1>
-            <p class="tagline">Computer Vision Intern @ BMW · University of Tübingen</p>
-            <nav>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-name">Nicolas Seng</div>
+            <div class="nav-links">
                 <a onclick="showPage('home')">Home</a>
                 <a onclick="showPage('blog')">Blog</a>
-                <a onclick="showPage('cv')">Lebenslauf</a>
-                <a href="nicolas.seng@icloud.com">Kontakt</a>
+                <a onclick="showPage('cv')">CV</a>
                 <a href="https://github.com/nicolasseng" target="_blank">GitHub</a>
-            </nav>
-        </header>
+            </div>
+        </div>
+    </nav>
 
-        <div id="home" class="page active">
+    <div id="home" class="page active">
+        <div class="hero">
+            <h1>Nicolas Seng</h1>
+            <p class="subtitle">Computer Vision Intern @ BMW<br>University of Tübingen</p>
+        </div>
+
+        <div class="container">
             <section>
                 <h2>About me</h2>
                 <p>
-                    Placeholder
+                    Passionate about computer vision and deep learning, I'm currently working on anomaly detection in
+                    automotive production at BMW. I combine academic rigor with practical applications to solve
+                    real-world challenges.
                 </p>
             </section>
 
             <section>
-                <h2>Latest Blog</h2>
-                <div class="blog-preview">
-                    <h3><a onclick="showPage('blog')">Coming soon</a></h3>
-                    <a onclick="showPage('blog')">Weiterlesen →</a>
+                <h2>Latest from Blog</h2>
+                <div class="card">
+                    <h3>Coming soon</h3>
+                    <p>Stay tuned for insights on computer vision, machine learning, and my journey in tech.</p>
+                    <a class="cta-button" onclick="showPage('blog')">View Blog</a>
                 </div>
             </section>
         </div>
+    </div>
 
-        <div id="blog" class="page">
-            <section>
-                <h2>Blog</h2>
-                <p>Placeholder</p>
-
-                <ul class="blog-list">
-
-                </ul>
-            </section>
+    <div id="blog" class="page">
+        <div class="hero">
+            <h1>Blog</h1>
+            <p class="subtitle">Thoughts on computer vision and machine learning</p>
         </div>
 
-        <div id="cv" class="page">
+        <div class="container">
             <section>
-                <h2>CV</h2>
+                <div class="card">
+                    <p class="blog-date">Coming soon</p>
+                    <h3>First post arriving soon</h3>
+                    <p>I'm working on some exciting content about computer vision and deep learning. Check back soon!
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
 
+    <div id="cv" class="page">
+        <div class="hero">
+            <h1>Experience</h1>
+            <p class="subtitle">My professional journey</p>
+        </div>
+
+        <div class="container">
+            <section>
                 <div class="cv-entry">
                     <h3>Computer Vision Intern</h3>
-                    <p class="cv-period">08/2025 – today</p>
+                    <p class="cv-period">August 2025 – Present</p>
                     <p class="cv-description">
                         BMW AG, Munich<br>
-                        Detecting anomalies in production of v8 and v12 engines using unsupervised deep learning
+                        Detecting anomalies in production of V8 and V12 engines using unsupervised deep learning
                         approaches.
                     </p>
                 </div>
 
                 <div class="cv-entry">
                     <h3>Student Research Assistant</h3>
-                    <p class="cv-period">04/2024 – 10/2024</p>
+                    <p class="cv-period">April 2024 – October 2024</p>
                     <p class="cv-description">
                         Fraunhofer IPA, Stuttgart<br>
                         Computer Vision
                     </p>
                 </div>
+
                 <div class="cv-entry">
                     <h3>Bachelor of Science in Computer Science</h3>
                     <p class="cv-period">2021 – 2025</p>
@@ -261,12 +350,12 @@
                 </div>
             </section>
         </div>
-
-        <footer>
-            <p>© 2025 Nicolas Seng · <a href="mailto:nicolas.seng@icoud.com">nicolas.seng@icloud.com</a> · <a
-                    href="https://github.com/nicolasseng">GitHub</a></p>
-        </footer>
     </div>
+
+    <footer>
+        <p>© 2025 Nicolas Seng · <a href="mailto:nicolas.seng@icloud.com">nicolas.seng@icloud.com</a> · <a
+                href="https://github.com/nicolasseng">GitHub</a></p>
+    </footer>
 
     <script>
         function showPage(pageId) {
@@ -275,7 +364,7 @@
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
