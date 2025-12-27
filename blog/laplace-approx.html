@@ -317,18 +317,18 @@
         \underbrace{p(\theta | \mathcal{D})}_{\text{Posterior}} =
         \frac{\overbrace{p(\mathcal{D} | \theta)}^{\text{Likelihood}} \cdot
         \overbrace{p(\theta)}^{\text{Prior}}}
-        {\underbrace{p(\mathcal{D})}_{\text{Evidence}}} \propto p(D|\theta)*p(\theta)
+        {\underbrace{p(\mathcal{D})}_{\text{Evidence}}} \propto p(\mathcal{D}|\theta) \cdot p(\theta)
         $$
         <p>
             stating how prior knowledge and observed data result in the posterior distribution.
         </p>
         <p>
             In order to find the posterior distribution of our weights, we need to maximize $p(\theta|\mathcal{D})$
-            w.r.t the weights. Since this is proportional to $p(D|\theta)*p(\theta)$ and maximizing a product is
+            w.r.t the weights. Since this is proportional to $p(D|\theta) \cdot p(\theta)$ and maximizing a product is
             challenging, we rather work in log-space and maximize the sum:
         </p>
         $$
-        \theta_{\text{MAP}}=\arg \underset{\theta}{\max} \, \log(p(D|\theta))+\log(p(\theta))
+        \theta_{\text{MAP}}=\arg \underset{\theta}{\max} \, \log(p(\mathcal{D}|\theta))+\log(p(\theta))
         $$
 
         <h2>The Laplace Approximation</h2>
@@ -336,17 +336,20 @@
         <p>
             The Laplace approximation tries to approximate the posterior distribution by fitting a Gaussian centered at
             the point-estimate. This Gaussian is characterized by mean $\theta_\text{MAP}$ and $\Sigma:=(\nabla^2_\theta
-            \mathcal{L}(D,\theta)|_{\theta_{\text{MAP}}})^{-1}$ as the covariance matrix.
+            \mathcal{L}(\mathcal{D},\theta)|_{\theta_{\text{MAP}}})^{-1}$ as the covariance matrix.
         </p>
         <p>
             This can be obtained by using the second-order Taylor expansion of the posterior at $\theta_\text{MAP}$:
         </p>
         $$
-        p(\theta|D)=\frac{1}{Z}p(D|\theta)*p(\theta) \approx \frac{\det(\Lambda)^{\frac{1}{2}}}{(2\pi)^{\frac{d}{2}}}
+        p(\theta|D)=\frac{1}{Z}p(\mathcal{D}|\theta) \cdot p(\theta) \approx
+        \frac{\det(\Lambda)^{\frac{1}{2}}}{(2\pi)^{\frac{d}{2}}}
         \text{exp}\left(-\frac{1}{2}(\theta-\theta_{\text{MAP}})^T\Lambda(\theta-\theta_{\text{MAP}})\right),
         $$
         <p>
-            with $\Lambda:=-\nabla^2 p(D|\theta)*p(\theta)|_{\theta_{\text{MAP}}}$ being the Hessian matrix of the
+            with $\Lambda:=-\nabla^2 p(\mathcal{D}|\theta) \cdot p(\theta)|_{\theta_{\text{MAP}}}$ being the Hessian
+            matrix of
+            the
             unnormalized posterior evaluated at $\theta_{\text{MAP}}$. A more detailed proof can be found <a
                 href="https://bookdown.org/rdpeng/advstatcomp/laplace-approximation.html"> here</a> and
             here: <a href="https://arxiv.org/pdf/2106.14806"> Daxberger et al.</a>
