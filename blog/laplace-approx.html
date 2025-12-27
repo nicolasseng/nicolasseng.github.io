@@ -4,6 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MathJax Config -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async>
+    </script>
+
+    <!-- Optional: Syntax Highlighting für Code -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js">
+    </script>
+    <script>hljs.highlightAll();</script>
     <title>Laplace Approximation for Neural Networks - Nicolas Seng</title>
     <style>
         * {
@@ -256,7 +274,40 @@
     <div class="content">
         <a href="../index.html#blog" class="back-link">← Back to Blog</a>
 
-        <h2>Coming soon!</h2>
+        <!-- DEIN CONTENT STARTET HIER -->
+
+        <p>
+            This is a step-by-step guide on how to train a neural network on a standard regression dataset
+            and
+            then try to approximate the posterior distribution by fitting a Gaussian centered at the
+            maximum-a-posteriori estimate.
+        </p>
+
+        <h2>Why should we care about approximating the posterior?</h2>
+
+        <p>
+            Training a neural network on a dataset yields a point estimate for the weights $\theta§ given some data
+            $D:=\{(x_i \in \mathbb{R}^{d_x}, y_i \in \mathbb{R}^{d_y})\}_{i=1}^{N}$.
+            This is equivalent to statistical risk minimization:
+        </p>
+        $$
+        \theta_{\text{MAP}}=\arg \underset{\theta}{\min} \, \mathcal{L}(D;\theta)
+        $$
+        <p>
+            The result is a set of weights that minimize the loss function w.r.t your data. For new unseen data
+            points, your model may carry a lot of uncertainty in the prediction.
+            Suppose you train a neural network to predict house prices and your trained model predicts a price of
+            200.000€ for a given house. How certain is the model about this prediction? Is it within a range of
+            10.000€? 100.000€?
+
+            This is particulary interesting for safety-critical applications, such as autonomous driving or medical
+            diagnosis.
+
+            Uncertainty quantification tries to solve this problem.
+        </p>
+
+
+        <!-- DEIN CONTENT ENDET HIER -->
 
         <a href="../index.html#blog" class="back-link">← Back to Blog</a>
     </div>
